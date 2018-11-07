@@ -1,0 +1,40 @@
+import java.io.*;
+import java.net.*;
+
+public class peerSocket{
+
+ public static void main(String[] args){
+
+  URL httpMessage;
+  String answer;
+  BufferedReader in = null;
+  if (args.length >= 1){
+   System.out.println("Your URL is " + args[0]);
+   }
+  else{
+   System.out.println("Please enter the URL");
+   System.out.println("Format: peerSocket URL");
+   System.exit(-1);
+   }
+  try{
+   httpMessage = new URL(args[0]);
+   URLConnection connection = httpMessage.openConnection();
+   in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+   }
+  catch(IOException e){
+   System.out.println("Please check the URL.");
+   System.out.println(e);
+   System.exit(-1);
+   }
+  try{
+   answer = in.readLine();
+   System.out.println("The first line of the file is:");
+   System.out.println(answer);
+   in.close();
+   }
+  catch(IOException e){
+   System.out.println("There are problems in reading the file");
+   System.out.println(e);
+   }
+ }
+}

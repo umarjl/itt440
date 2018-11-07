@@ -1,0 +1,18 @@
+#define _OE_SOCKETS
+#include <netdb.h>
+
+struct protoent *getprotobyname(char name);
+
+int main{
+if perror(socket("INITIALIZE","MYSET01"),"INITIALIZE") = 0,
+   then do
+     src = socket("GETPROTOBYNAME","TCP");
+     Say "The TCP protocol is assigned the number of",
+         WORD(src,2);
+   end;
+src = perror(socket("TERMINATE","MYSET01"),"TERMINATE");
+exit 0;
+
+perror: if word(arg(1),1) = 0 then return 0; else
+    Say arg(2) "Error : "arg(1);
+    return -1;}

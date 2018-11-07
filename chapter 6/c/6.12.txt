@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+#define PORTNUM 2005    /* user defined port, not a well-known one */
+
+main()
+{
+        struct sockaddr_in  saTo;
+        int  fdTo, fromlen;
+        char        *req_buf;  /* must allocate memory */
+        int        cch;
+
+        fdTo = socket(AF_INET, SOCK_DGRAM, 0);
+
+        bzero((char *)&saTo, sizeof(saTo));
+        saTo.sin_family = AF_INET;
+        saTo.sin_port = PORTNUM;
+        saTo.sin_addr.s_addr = INADDR_ANY;
+
+        /* bind fd */
+        bind(fdTo,(char *)&saTo, sizeof(saTo));
+
+        while(1) {        /* server loop */
+            fromlen = sizeof(saTo);
+            cch = recvfrom(fdTo, req_buf, 80, 0, &saTo, &fromlen);
+        
+            /* reply */
+            sendto(fdTo, req_buf, cch, 0, &saTo, sizeof(saTo));        
+        }
+}

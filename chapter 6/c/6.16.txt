@@ -1,0 +1,26 @@
+#include <netdb.h>
+
+main()
+{
+
+  struct protoent *pp;
+
+  pp = getprotobyname( "ip" );
+  if (pp) printf(" ip = %d\n", pp->p_proto );
+
+  pp = getprotobyname( "icmp" );
+  if (pp) printf(" icmp = %d\n", pp->p_proto );
+
+  pp = getprotobyname( "igmp" );
+  if (pp) printf(" igmp = %d\n", pp->p_proto );
+
+  pp = getprotobyname( "tcp" );
+  if (pp) printf(" tcp = %d\n", pp->p_proto );
+
+  pp = getprotobyname( "udp" );
+  if (pp) printf(" udp = %d\n", pp->p_proto );
+
+  pp = getprotobyname( "rdp" );
+  if (pp) printf(" rdp = %d\n", pp->p_proto );
+
+}
