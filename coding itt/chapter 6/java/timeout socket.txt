@@ -1,0 +1,30 @@
+package com.javacodegeeks.snippets.core;
+
+import java.io.*;
+import java.net.*;
+	
+public class ClientSocketWithTimeout {
+	
+	public static void main(String[] args) {
+	 try {
+	            InetAddress addr = InetAddress.getByName("javacodegeeks.com");
+	            int port = 80;
+	            SocketAddress sockaddr = new InetSocketAddress(addr, port);
+	          
+	            Socket socket = new Socket();
+	 
+	            int timeout = 5000;   
+	            socket.connect(sockaddr, timeout);
+	             
+	            System.out.println("Socket connected..." + socket);
+	             
+	        }
+	    catch (UnknownHostException e) {
+	            System.out.println("Host not found: " + e.getMessage());
+	        }
+	    catch (IOException ioe) {
+	            System.out.println("I/O Error " + ioe.getMessage());
+	        }
+	         
+	   }
+	}

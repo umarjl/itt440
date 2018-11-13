@@ -1,0 +1,20 @@
+int sock, ret;
+struct sockaddr_in saddr;
+char buffer[MAX_BUFFER];
+
+sock = socket( AF_INET, SOCK_DGRAM, 0 );
+
+memset( &saddr, 0, sizeof(saddr) );
+saddr.sin_family = AF_INET;
+saddr.sin_port = htons( MY_PORT );
+saddr.sin_addr.s_addr = inet_aton( "192.168.1.1" );
+
+ret = connect( sock,
+               (struct sockaddr_in *)&saddr, sizeof(saddr) );
+
+...
+
+ret = send( sock, buffer, strlen(buffer), 0 );
+End example 
+ 
+

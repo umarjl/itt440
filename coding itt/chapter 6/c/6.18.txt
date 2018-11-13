@@ -1,0 +1,27 @@
+#include <netdb.h>
+
+main()
+{
+  struct servent *sp;
+
+  /* Start the service enumeration */
+  setservent( 0 );
+
+  while (1) {
+
+    /* Get the next service row */
+    sp = getservent();
+
+    if (sp != NULL) {
+
+      printf("Service %s is at port %d for %s\n",
+              sp->s_name, ntohs(sp->s_port), sp->s_proto);
+
+    } else break;
+
+  }
+
+  /* End the service enumeration */
+  endservent();
+
+}

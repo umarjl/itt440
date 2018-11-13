@@ -1,0 +1,20 @@
+#include <sys/socket.h>
+
+main{
+int getpeername(int s, struct sockaddr *addr, socklen_t *len);
+int s;
+struct sockaddr_in server, addr;
+socklen_t len;
+
+s = socket(PF_INET, SOCK_STREAM, 0);
+
+server.sin_family = AF_INET;
+inet_aton("63.161.169.137", &server.sin_addr);
+server.sin_port = htons(80);
+
+connect(s, (struct sockaddr*)&server, sizeof(server));
+
+len = sizeof(addr);
+getpeername(s, (struct sockaddr*)&addr, &len);
+printf("Peer IP address: %s\n", inet_ntoa(addr.sin_addr));
+printf("Peer port      : %d\n", ntohs(addr.sin_port));}
